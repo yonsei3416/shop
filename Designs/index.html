@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>body {
+    background-color: rgb(255,255,153);
+}
+button{
+    background-color:rgb(102, 51, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+	display: inline-block;	
+}
+#position{position: absolute; visibility: visible; right: 600px; top: 650px;}
+#position1{position: absolute; visibility: visible; right: 10px; top: 20px;}
+#centre0{position: absolute; visibility: visible; right: 800px; top: 250px;}
+#centre1{position: absolute; visibility: visible; right: 600px; top: 250px;}
+#centre2{position: absolute; visibility: visible; right: 600px; top: 300px;}
+#centre3{position: absolute; visibility: visible; right: 600px; top: 350px;}
+#centre4{position: absolute; visibility: visible; right: 600px; top: 400px;}
+#centre5{position: absolute; visibility: visible; right: 500px; top: 450px;}
+
+.font-size {
+    font-size: 80%;
+}
+.login{
+    margin: 10% 30% 10% 35%
+}
+/* Style the tab */
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: rgb(184, 151, 126)
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: rgb(102, 51, 0);
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+.tabLinks{
+    position:fixed
+}
+
+.positionLeft{
+    position: left;
+}</style>
+	
+</head>
+
+<body>
+
+	<!--Create login and signup tabs-->
+	<div class="tab">
+		<div>
+			<div id="login" class="tabcontent login">
+				<form action="">
+					<div>
+						<span>Email   </span><input name="email" type="Text" placeholder="Email Address or Username">
+					</div>
+					<br>
+					<div>
+						<span>Password </span><input name="password" type="Password" placeholder="password">
+					</div>
+					<br>
+					<div>
+						<input type="button" onclick="handleLoginClick(this.form)" value="Login" />
+						<input type="button" onclick="" value="Forgot Password" />
+					</div>
+					<br>
+				</form>
+			</div>
+			<!--Sign Up form-->
+			<div id="signup" class="tabcontent login">
+				<form action="http://flask-backend-api">
+					<div>
+						<span>First Name   </span><input type="Text" placeholder="Your First Name">
+					</div>
+					<br>
+					<div>
+						<span>Last Name   </span><input type="Text" placeholder="Your Last Name">
+					</div>
+					<br>
+					<div>
+						<span>Email   </span><input type="Email" placeholder="Email Address">
+					</div>
+					<br>
+					<div>
+						<span>Address   </span><input type="Text" placeholder="Your Address">
+					</div>
+					<br>
+					<div>
+						<span>UserName   </span><input type="Text" placeholder="Choose a Username">
+					</div>
+					<br>
+					<div>
+						<span>Password </span><input type="Password" placeholder="password">
+					</div>
+					<br>
+					<div>
+						<input type="submit" value="Register">
+					</div>
+					<br>
+				</form>
+			</div>
+		</div>
+		<!--Redirect to other pages-->
+		<div class="login">
+			<button class="" onclick="switchLLogSignup(event, 'login')" id="defaultOpen">Login</button>
+			<button class="" onclick="switchLLogSignup(event, 'signup')">Signup</button>
+		</div>
+	</div>
+	<div id="position">
+		<p><a href="#">Terms and Conditions </a><a href="#">| Privacy policy </a></p>
+	</div>
+    <script>
+	function switchLLogSignup(evt, SwitchPage) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(SwitchPage).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+var handleLoginClick = function loginFunction(form) {
+    console.log(form.email.value)
+    console.log(form.password.value)
+    if (form.email.value === 'purity@gmail.com' && form.password.value === '123456') {
+        window.location = 'shoppinglistdashboard.html'
+    }
+    else {
+        alert("wrong username or password")
+    }
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+// Create a "close" button and append it to each list item
+var myShoppinglist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myShoppinglist.length; i++) {
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    myShoppinglist[i].appendChild(span);
+}
+
+// Delete the current list item on clicking the "close" button.
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+        var div = this.parentElement;
+        div.style.display = "none";
+    }
+}
+// Create a new list item when clicking on the "Add" button
+function newItem() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("myInput").value;
+    let currentList = localStorage.getItem('shoppingList1')
+    if (currentList) {
+        let listObj = JSON.parse(currentList)
+        listObj.items.push(inputValue)
+        localStorage.setItem('shoppingList1', JSON.stringify(listObj))
+    }
+    else {
+        let listObj = {
+            name: "shoppingList1",
+            items: [
+                inputValue
+            ]
+        }
+        localStorage.setItem('shoppingList1', JSON.stringify(listObj))
+    }
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+        alert("Provide Item Name");
+    } else {
+        document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("myInput").value = "";
+
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+}//Redirect to back to sign in page on clicking logout
+function logout() {
+    window.location = 'index.html'
+}
+</script>
+</html>

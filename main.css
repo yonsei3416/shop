@@ -1,0 +1,63 @@
+body {
+    background-color: rgb(255,255,153);
+}
+button{
+    background-color:rgb(102, 51, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+	display: inline-block;	
+}
+#position{position: absolute; visibility: visible; right: 600px; top: 650px;}
+#position1{position: absolute; visibility: visible; right: 10px; top: 20px;}
+#centre0{position: absolute; visibility: visible; right: 800px; top: 250px;}
+#centre1{position: absolute; visibility: visible; right: 600px; top: 250px;}
+#centre2{position: absolute; visibility: visible; right: 600px; top: 300px;}
+#centre3{position: absolute; visibility: visible; right: 600px; top: 350px;}
+#centre4{position: absolute; visibility: visible; right: 600px; top: 400px;}
+#centre5{position: absolute; visibility: visible; right: 500px; top: 450px;}
+
+.font-size {
+    font-size: 80%;
+}
+.login{
+    margin: 10% 30% 10% 35%
+}
+/* Style the tab */
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: rgb(184, 151, 126)
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: rgb(102, 51, 0);
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+.tabLinks{
+    position:fixed
+}
+
+.positionLeft{
+    position: left;
+}

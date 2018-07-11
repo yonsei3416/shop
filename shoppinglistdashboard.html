@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+   <link rel="stylesheet" type="text/css" href="css/shoppinDash.css" />
+</head>
+
+<body>
+  <div class="navigationbar" id="Top">
+    <input type="button" onclick="logout()" value="Logout" />
+    <a href="ViewShoppingLists.html">View Lists</a>
+    <a href="#settings">Settings</a>
+  </div>
+
+  <div id="createlist" class="header">
+    <h2 style="margin:5px">My Shopping List</h2>
+    <input type="text" id="myInput" placeholder="Item...">
+    <span onclick="newItem()" class="addButton">Add</span>
+  </div>
+
+  <div>
+    <ul id="myUL">
+    </ul>
+    <button type="Save" value="Save" onclick="appendList()">Save List</button>
+  </div>
+<script src="js/main.js"></script>
+</body>
+
+</html>

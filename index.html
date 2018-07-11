@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body>
+	<!--Create login and signup tabs-->
+	<div class="tab">
+		<div>
+			<div id="login" class="tabcontent login">
+				<form action="">
+					<div>
+						<span>Email   </span><input name="email" type="Text" placeholder="Email Address or Username">
+					</div>
+					<br>
+					<div>
+						<span>Password </span><input name="password" type="Password" placeholder="password">
+					</div>
+					<br>
+					<div>
+						<input type="button" onclick="handleLoginClick(this.form)" value="Login" />
+						<input type="button" onclick="" value="Forgot Password" />
+					</div>
+					<br>
+				</form>
+			</div>
+			<!--Sign Up form-->
+			<div id="signup" class="tabcontent login">
+				<form action="http://flask-backend-api">
+					<div>
+						<span>First Name   </span><input type="Text" placeholder="Your First Name">
+					</div>
+					<br>
+					<div>
+						<span>Last Name   </span><input type="Text" placeholder="Your Last Name">
+					</div>
+					<br>
+					<div>
+						<span>Email   </span><input type="Email" placeholder="Email Address">
+					</div>
+					<br>
+					<div>
+						<span>Address   </span><input type="Text" placeholder="Your Address">
+					</div>
+					<br>
+					<div>
+						<span>UserName   </span><input type="Text" placeholder="Choose a Username">
+					</div>
+					<br>
+					<div>
+						<span>Password </span><input type="Password" placeholder="password">
+					</div>
+					<br>
+					<div>
+						<input type="submit" value="Register">
+					</div>
+					<br>
+				</form>
+			</div>
+		</div>
+		<!--Redirect to other pages-->
+		<div class="login">
+			<button class="" onclick="switchLLogSignup(event, 'login')" id="defaultOpen">Login</button>
+			<button class="" onclick="switchLLogSignup(event, 'signup')">Signup</button>
+		</div>
+	</div>
+	<div id="position">
+		<p><a href="#">Terms and Conditions </a><a href="#">| Privacy policy </a></p>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

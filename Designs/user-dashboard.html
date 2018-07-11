@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+  body {
+      /* create a margin around the body element and set the minimum width of the body element */
+      margin: 10;
+      min-width: 250px;
+    }
+    /* Ensure the allowance for padding and border are included within the total width and height of the element */
+
+    * {
+      box-sizing: border-box;
+    }
+    /* Remove margins from the list items and add padding */
+
+    ul {
+      margin: 0;
+      padding: 20;
+    }
+    /* Style the list items */
+
+    ul li {
+      cursor: pointer;
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      color: rgb(102, 51, 0);
+      background: rgb(255, 255, 153);
+      font-size: 18px;
+      transition: 0.2s;
+      list-style-type: square;
+    }
+    /* Style the close button */
+
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 12px 16px 12px 16px;
+    }
+
+    .close:hover {
+      background-color: rgb(184, 151, 126);
+      color: white;
+    }
+    /* Style the header */
+
+    .header {
+      background-color: rgb(102, 51, 0);
+      padding: 30px 40px;
+      color: white;
+      text-align: center;
+    }
+    /* Clearfix for floating items after the header */
+
+    .header::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    /* Style the item textfield*/
+
+    input {
+      border: none;
+      width: 75%;
+      padding: 10px;
+      float: left;
+      font-size: 16px;
+    }
+    /* Style the "Add" button */
+
+    .addButton {
+      padding: 10px;
+      width: 25%;
+      background: rgb(222, 184, 135);
+      color: rgb(102, 51, 0);
+      ;
+      float: left;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .addButton:hover {
+      background-color: rgb(255, 222, 173);
+    }
+    /* Style the 'Save List' button */
+
+    button {
+      background-color: rgb(102, 51, 0);
+      border: none;
+      padding: 15px 32px;
+      width: 25%;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      color: white;
+      cursor: pointer;
+    }
+    /* Position the 'Save List' button to the bottom left of the list */
+
+    button {
+      position: absolute;
+      visibility: visible;
+      right: 0px;
+    }
+    /* Add a yellow background color to the top navigation to make any overflowing content invisible */
+
+    .navigationbar {
+      background-color: rgb(255, 255, 153);
+      overflow: hidden;
+    }
+    /* Style the links inside the navigation bar */
+
+    .navigationbar a {
+      float: right;
+      display: block;
+      color: rgb(102, 51, 0);
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    /* Change the color of links within the navigation bar upon on hovering */
+
+    .navigationbar a:hover {
+      background-color: rgb(102, 51, 0);
+      color: white;
+    }
+    .logoutbutton{
+      background-color: rgb(102, 51, 0);
+      width: 25%;
+      color: white;
+      cursor: pointer;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="navigationbar" id="Top">
+    <input type="button" onclick="logout()" value="Logout" class="logoutbutton"/>
+    <a href="ViewShoppingLists.html">View Lists</a>
+    <a href="#settings">Settings</a>
+  </div>
+
+  <div id="createlist" class="header">
+    <h2 style="margin:5px">My Shopping List</h2>
+    <input type="text" id="myInput" placeholder="Item...">
+    <span onclick="newItem()" class="addButton">Add</span>
+  </div>
+<br>
+  <div>
+    <ul id="myUL">
+    </ul>
+    <button type="Save" value="Save" onclick="appendList()">Save List</button>
+  </div>
+  <script>
+ // Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click(); 
+// Create a "close" button and append it to each list item
+var myShoppinglist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myShoppinglist.length; i++) {
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    myShoppinglist[i].appendChild(span);
+}
+
+// Delete the current list item on clicking the "close" button.
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+        var div = this.parentElement;
+        div.style.display = "none";
+    }
+}
+// Create a new list item when clicking on the "Add" button
+function newItem() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("myInput").value;
+    var currentList = localStorage.getItem('shoppingList1')
+    if (currentList) {
+        var listObj = JSON.parse(currentList)
+        listObj.items.push(inputValue)
+        localStorage.setItem('shoppingList1', JSON.stringify(listObj))
+    }
+    else {
+        var listObj = {
+            name: "shoppingList1",
+            items: [
+                inputValue
+            ]
+        }
+        localStorage.setItem('shoppingList1', JSON.stringify(listObj))
+    }
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+        alert("Provide Item Name");
+    } else {
+        document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("myInput").value = "";
+
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+}
+//Redirect to back to sign in page on clicking logout
+function logout() {
+    window.location = 'index.html'
+}
+</script>
+</html>

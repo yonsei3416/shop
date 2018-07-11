@@ -1,0 +1,72 @@
+<!Doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+body{
+background-color: rgb(255, 255, 153);
+}
+.Shoppinglist-menu {
+    width: 500px; /* Set the width of the menu */
+    position:relative;
+    top:30px;
+    
+}
+
+.Shoppinglist-menu a {
+    background-color: rgb(222, 184, 135); /* Style with Burlywood background color */
+    color: rgb(102,51,0); /* Brown text color */
+    display: block; /* Make the links within the icon bar appear below each other */
+    padding: 12px; /* Add some padding to the links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.Shoppinglist-menu a:hover {
+    background-color: rgb(184, 151, 126); /* Add brown background color upon hovering*/
+}
+
+.back-icon {
+    width: 100%;
+    background-color: rgb(102,51,0);
+    overflow: auto;
+}
+
+.back-icon a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color: rgb(255, 255, 153);
+    font-size: 36px;
+}
+
+.back-icon:hover {
+    background-color: rgb(222, 184, 135);
+}
+</style>
+<body>
+<div class="back-icon" onclick="goBack()">
+  <a href="#"><i class="fa fa-arrow-circle-left"></i></a> 
+</div>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+</div>
+<div class="Shoppinglist-menu">
+  <h3>My Shopping Lists</h3>
+  <a href="#">Shopping List 1</a>
+  <a href="#">Shopping List 2</a>
+  <a href="#">Shopping List 3</a>
+  <a href="#">Shopping List 5</a>
+  <a href="#">Shopping List 6</a>
+  <a href="#">Shopping List 7</a>
+  <a href="#">Shopping List 8</a>
+  <a href="#">Shopping List 9</a>
+  <a href="#">Shopping List 10</a>
+</div>
+</body>
+</html>
